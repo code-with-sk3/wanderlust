@@ -1,0 +1,26 @@
+<% layout("layouts/boilerplate") %>
+<div class="container mt-4">
+  <h3>Create a New Listing</h3>
+
+  <form method="POST" action="/listings">
+    <input class="form-control" name="listing[title]" placeholder="enter title" type="text" required/>
+    <br />
+
+    <textarea class="form-control" name="listing[description]" placeholder="enter description" required></textarea>
+    <br />
+
+    <input class="form-control" name="listing[image]" placeholder="enter image URL/Link" type="text" />
+    <br />
+
+    <input class="form-control" name="listing[price]" placeholder="enter price" type="number" required/>
+    <br />
+
+    <input class="form-control" name="listing[country]" placeholder="enter country" type="text" required/>
+    <br />
+
+    <input class="form-control" name="listing[location]" placeholder="enter location" type="text" required/>
+    <br />
+
+    <button class="btn add-btn">Add</button>
+  </form>
+</div>
