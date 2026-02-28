@@ -1,26 +1,91 @@
 <% layout("layouts/boilerplate") %>
+
 <div class="container mt-4">
-  <h3>Create a New Listing</h3>
+  <h3 class="mb-4">Create a New Listing</h3>
 
-  <form method="POST" action="/listings">
-    <input class="form-control" name="listing[title]" placeholder="enter title" type="text" required/>
-    <br />
+  <form method="POST" action="/listings" class="needs-validation" novalidate>
 
-    <textarea class="form-control" name="listing[description]" placeholder="enter description" required></textarea>
-    <br />
+    <!-- Title -->
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input 
+        type="text"
+        class="form-control"
+        name="listing[title]"
+        placeholder="Enter title"
+        required>
+      <div class="invalid-feedback">
+        Please enter a title.
+      </div>
+    </div>
 
-    <input class="form-control" name="listing[image]" placeholder="enter image URL/Link" type="text" />
-    <br />
+    <!-- Description -->
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea 
+        class="form-control"
+        name="listing[description]"
+        placeholder="Enter description"
+        required></textarea>
+      <div class="invalid-feedback">
+        Please enter a description.
+      </div>
+    </div>
 
-    <input class="form-control" name="listing[price]" placeholder="enter price" type="number" required/>
-    <br />
+    <!-- Image -->
+    <div class="mb-3">
+      <label class="form-label">Image URL</label>
+      <input 
+        type="text"
+        class="form-control"
+        name="listing[image]"
+        placeholder="Enter image URL">
+    </div>
 
-    <input class="form-control" name="listing[country]" placeholder="enter country" type="text" required/>
-    <br />
+    <!-- Price -->
+    <div class="mb-3">
+      <label class="form-label">Price</label>
+      <input 
+        type="number"
+        class="form-control"
+        name="listing[price]"
+        placeholder="Enter price"
+        required
+        min="0">
+      <div class="invalid-feedback">
+        Please enter a valid price.
+      </div>
+    </div>
 
-    <input class="form-control" name="listing[location]" placeholder="enter location" type="text" required/>
-    <br />
+    <!-- Country -->
+    <div class="mb-3">
+      <label class="form-label">Country</label>
+      <input 
+        type="text"
+        class="form-control"
+        name="listing[country]"
+        placeholder="Enter country"
+        required>
+      <div class="invalid-feedback">
+        Please enter a country.
+      </div>
+    </div>
 
-    <button class="btn add-btn">Add</button>
+    <!-- Location -->
+    <div class="mb-3">
+      <label class="form-label">Location</label>
+      <input 
+        type="text"
+        class="form-control"
+        name="listing[location]"
+        placeholder="Enter location"
+        required>
+      <div class="invalid-feedback">
+        Please enter a location.
+      </div>
+    </div>
+
+    <button class="btn btn-dark">Add Listing</button>
+
   </form>
 </div>
