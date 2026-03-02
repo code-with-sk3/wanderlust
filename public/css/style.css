@@ -54,7 +54,7 @@ body{
  }
 
  /* cards */
-.card{
+.listing-card{
     border: none !important;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
