@@ -9,7 +9,7 @@ router.get("/signup", (req,res) => {
     res.render("users/signup.ejs");
 });
 
-router.post("/signup", wrapAsync(async (req,res) => {
+router.post("/signup", wrapAsync(async (req, res, next) => {
     try {
         const { username, email, password } = req.body;
         const newUser = new User({ username, email });
@@ -39,8 +39,8 @@ router.post("/login",
         failureFlash: true }), 
         async (req, res) => {
             req.flash("success", "Logged in successfully");
-            res.redirect(res.locals.redirectUrl || '/listings');
-    
+            const redirectUrl = res.locals.redirectUrl || '/listings';
+            res.redirect(redirectUrl);
 });
 
 router.get("/logout", (req,res,next) => {

@@ -14,8 +14,9 @@ module.exports.isLoggedIn = (req,res,next) => {
 }
 
 module.exports.savedRedirectUrl = (req,res,next) => {
-    if(req.session.redirectUrl) {
+    if (req.session.redirectUrl) {
         res.locals.redirectUrl = req.session.redirectUrl;
+        delete req.session.redirectUrl;
     }
     next();
 }
