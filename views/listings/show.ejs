@@ -17,12 +17,15 @@
             </div>
 
             <ul>
+                <li><b>Owner:</b> <%= listing.owner.username %></li>
                 <li><b>Description:</b> <%= listing.description %></li>
                 <li><b>Price:</b> ₹<%= listing.price.toLocaleString("en-IN") %></li>
                 <li><b>Location:</b> <%= listing.location %></li>
                 <li><b>Country:</b> <%= listing.country %></li>
             </ul>
 
+
+            <% if(currentUser && currentUser._id.equals(listing.owner._id)) { %>
             <div class="mt-4 mb-5">
                 <a href="/listings/<%= listing._id %>/edit" 
                    class="btn btn-dark me-2">
@@ -37,13 +40,16 @@
                     </button>
                 </form>
             </div>
+            <% } %>
 
         </div>
 
     </div>
+    
 
     <div class="col-8 offset-2 mb-3">
         <hr>
+        <% if(currentUser) { %>
         <h4>Leave a Review</h4>
         <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate class="needs-validation">
             <div class="mb-3 mt-3">
@@ -60,15 +66,15 @@
             </div>
             <button class="btn btn-outline-dark">Submit</button>
         </form>
-
-        <hr>
+        <% } %>
+        
 
         <h4>Reviews</h4>
         <div class="row">
         <% for(let review of listing.reviews) { %>
             <div class="card col-5 mb-3 ms-3">
                 <div class="card-body">
-                    <h5 class="card-title">Jane Doe</h5> 
+                    <h5 class="card-title">@<%= review.author.username %></h5> 
                     <p class="card-text">Rating: <%= review.rating %> stars</p>
                     <p class="card-text"><%= review.comment %></p>
                 </div>
