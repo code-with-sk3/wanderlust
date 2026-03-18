@@ -49,6 +49,12 @@ module.exports.renderEditForm = async (req,res) => {
         req.flash("error", "Listing does not exist!");
         return res.redirect("/listings");
     }
+
+    let originalImageurl = listing.image;
+    originalImageurl = originalImageurl.replace("/upload/", "/upload/w_300/"); // Resize to width 300px for thumbnail
+    listing.image = originalImageurl;
+
+
     req.flash("success", "Successfully fetched the listing!");
     res.render("listings/edit.ejs", {listing});
 };
@@ -57,6 +63,12 @@ module.exports.updateListing = async (req,res) => {
     
     let {id} = req.params;
     const listing = await Listing.findByIdAndUpdate(id, req.body.listing);
+
+    // If a new image was uploaded, update the listing's image URL.
+    if (req.file && req.file.path) {
+        listing.image = req.file.path;
+        await listing.save();
+    }
     req.flash("success", "Successfully updated the listing!");
     res.redirect(`/listings/${id}`);
 };
